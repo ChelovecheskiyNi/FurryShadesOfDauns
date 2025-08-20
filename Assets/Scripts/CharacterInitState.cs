@@ -9,10 +9,15 @@ public class CharacterInitState : CharacterStateBase, ICharacterState
     [Space(20)]
     [SerializeField] private Transform placeToWalkTransform;
     [SerializeField] private Transform characterTransform;
-    private float minXWalkPosition;
-    private float minYWalkPosition;
-    private float maxXWalkPosition;
-    private float maxYWalkPosition;
+    public float minXWalkPosition;
+    public float minYWalkPosition;
+    public float maxXWalkPosition;
+    public float maxYWalkPosition;
+
+    public Vector2 GetRandomPoint()
+    {
+        return new Vector2(Random.Range(minXWalkPosition, maxXWalkPosition), Random.Range(minYWalkPosition, maxYWalkPosition));
+    }
 
     public override void Init()
     {
@@ -21,7 +26,7 @@ public class CharacterInitState : CharacterStateBase, ICharacterState
         minXWalkPosition = -((placeToWalkTransform.localScale.x / 2) - (characterTransform.localScale.x / 2)) + placeToWalkTransform.position.x;
         maxYWalkPosition = (placeToWalkTransform.localScale.y / 2) + placeToWalkTransform.position.y;
         minYWalkPosition = -(placeToWalkTransform.localScale.y / 2) + placeToWalkTransform.position.y;
-        characterTransform.transform.position = new Vector2(Random.Range(minXWalkPosition, maxXWalkPosition), Random.Range(minYWalkPosition, maxYWalkPosition));
+        characterTransform.transform.position = GetRandomPoint();
 
         stateManager.SetState(idleState);
     }
