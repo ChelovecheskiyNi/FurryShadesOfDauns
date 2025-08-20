@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class Stat : MonoBehaviour
+public struct Stat
 {
     public UnityEvent onValueChanges;
 
-    public float value = 50;
-    public float maxValue = 50;
-    [SerializeField] private float valuePerTimePass = 0.1f;
+    public float value;
+    public float maxValue;
+    [SerializeField] private float valuePerTimePass;
 
     public void SetValue(float _value)
     {
