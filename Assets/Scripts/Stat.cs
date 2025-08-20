@@ -14,10 +14,14 @@ public class Stat : MonoBehaviour
 
     public void SetValue(float _value)
     {
-        value = Mathf.Min(maxValue, _value);
+        value = Mathf.Max(Mathf.Min(maxValue, _value), 0);
     }
     public void RemoveValuePerTimePass(int timePasses)
     {
         value = Mathf.Max(0, value - (timePasses * valuePerTimePass));
+    }
+    public void AddValue(float _addValue)
+    {
+        value = Mathf.Min(maxValue, value + _addValue);
     }
 }
